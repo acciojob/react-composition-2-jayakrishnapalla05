@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-function App() {
-  const [showModal, setShowModal] = useState(false);
+const App=()=> {
+  const[element, setelement]=useState("");
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
 
+
+  function openModal(){
+    if(element===""){
+      setelement(<div className='model-overlay'>
+      < button className='model-close' onClick={closeModel}>Close Modal</button>
+     <p className='model-p'>This is the content of the modal</p>
+     </div>);
+
+    }
+  }
+
+  function closeModel(){
+    setelement('');
+  }
   return (
     <div>
-      <button onClick={() => setShowModal(true)}>Open Modal</button>
-      <Modal show={showModal} onClose={handleCloseModal}>
-        This is the content of the modal.
-      </Modal>
+      <button onClick={openModal}>Show Modal</button>
+      {
+        element
+      }
     </div>
-  );
+  )
+  
 }
 
 export default App;
